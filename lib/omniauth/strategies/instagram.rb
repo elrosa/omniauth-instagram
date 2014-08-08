@@ -3,6 +3,8 @@ require 'omniauth-oauth2'
 module OmniAuth
   module Strategies
     class Instagram < OmniAuth::Strategies::OAuth2
+      name: "instagram",
+
       option :client_options, {
         :site => 'https://api.instagram.com',
         :authorize_url => 'https://api.instagram.com/oauth/authorize',
@@ -16,6 +18,10 @@ module OmniAuth
       end
 
       uid { raw_info['id'] }
+
+      extra do
+        {'raw_info' => raw_info.merge(access_token.params)}
+      end
 
       info do
         {
