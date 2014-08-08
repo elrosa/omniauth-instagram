@@ -3,7 +3,7 @@ require 'omniauth-oauth2'
 module OmniAuth
   module Strategies
     class Instagram < OmniAuth::Strategies::OAuth2
-      name: "instagram",
+      option :name, "instagram"
 
       option :client_options, {
         :site => 'https://api.instagram.com',
